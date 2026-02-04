@@ -13,9 +13,10 @@ import RiskRegisterPage from "./pages/platform_architecture/RiskRegisterPage";
 import ProductEngineeringPage from "./pages/product_engineering/ProductEngineeringPage";
 import ApiIntegrationsPage from "./pages/ApiIntegrationsPage";
 import IntegrationHealthPage from "./pages/IntegrationHealthPage";
-import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
 import DevOpsInfrastructurePage from "./pages/DevOpsInfrastructurePage";
 import DeploymentPipelinePage from "./pages/dev-ops/DeploymentPipelinePage";
+
+import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
 
 function App() {
   return (
