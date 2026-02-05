@@ -12,9 +12,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   return (
     <div className="flex justify-between items-center mb-8 sm:gap-0 gap-2 flex-wrap">
       <div>
-        <h2 className="md:text-3xl text-2xl font-semibold text-[#1E1E1E] font-[poppins] mb-2">{title}</h2>
+        <h2 className="xl:text-3xl text-2xl font-semibold text-[#1E1E1E] font-[poppins] mb-2">
+          {title}
+        </h2>
         {subtitle && (
-          <p className="md:text-base text-sm text-[#1E1E1E] font-normal font-[poppins]">{subtitle}</p>
+          <p className="xl:text-sm text-[#1E1E1E] font-normal font-[poppins]">
+            {subtitle}
+          </p>
         )}
       </div>
 
