@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardAction,
   CardContent,
 } from "@/components/ui/card";
 import {
@@ -111,15 +110,10 @@ export default function PrivacyRequestsCard() {
   return (
     <Card>
       <CardHeader>
-        <div>
-          <CardTitle>Privacy Request</CardTitle>
-          <CardDescription>
-            User data export/deletion with approval gates and consent logging.
-          </CardDescription>
-        </div>
-        <CardAction>
-          <Button>View All</Button>
-        </CardAction>
+        <CardTitle>Privacy Request</CardTitle>
+        <CardDescription>
+          User data export/deletion with approval gates and consent logging.
+        </CardDescription>
       </CardHeader>
 
       <CardContent>
