@@ -15,6 +15,7 @@ import ApiIntegrationsPage from "./pages/ApiIntegrationsPage";
 import IntegrationHealthPage from "./pages/IntegrationHealthPage";
 import DevOpsInfrastructurePage from "./pages/DevOpsInfrastructurePage";
 import DeploymentPipelinePage from "./pages/dev-ops/DeploymentPipelinePage";
+import DataEngineeringPage from "./pages/data-engineering/DataEngineeringPage";
 
 import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
 
@@ -67,32 +68,7 @@ function App() {
           />
           <Route path="/security-privacy" element={<SecurityPrivacyPage />} />
           <Route
-            path="/data-engineering"
-            element={
-              <div className="p-8">
-                <h1>Data Engineering</h1>
-                <p>Placeholder Page</p>
-              </div>
-            }
-          />
-          <Route
-            path="/ai-ml"
-            element={
-              <div className="p-8">
-                <h1>AI/ML Engineering</h1>
-                <p>Placeholder Page</p>
-              </div>
-            }
-          />
-          <Route
-            path="/engineering-qa"
-            element={
-              <div className="p-8">
-                <h1>Engineering QA</h1>
-                <p>Placeholder Page</p>
-              </div>
-            }
-          />
+          <Route path="/data-engineering" element={<DataEngineeringPage />} />
           <Route
             path="/release-management"
             element={
