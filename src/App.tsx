@@ -16,6 +16,8 @@ import IntegrationHealthPage from "./pages/IntegrationHealthPage";
 import DevOpsInfrastructurePage from "./pages/DevOpsInfrastructurePage";
 import DeploymentPipelinePage from "./pages/dev-ops/DeploymentPipelinePage";
 import DataEngineeringPage from "./pages/data-engineering/DataEngineeringPage";
+import AIEngineeringPage from "./pages/ai-ml/AIEngineeringPage";
+import EngineeringQA from "./pages/EngineeringQAPage";
 
 import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
 import AccessReviewPage from "./pages/security-privacy/AccessReviewPage";
@@ -73,6 +75,8 @@ function App() {
             element={<AccessReviewPage />}
           />
           <Route path="/data-engineering" element={<DataEngineeringPage />} />
+          <Route path="/ai-ml" element={<AIEngineeringPage />} />
+          <Route path="/engineering-qa" element={<EngineeringQA />} />
           <Route
             path="/release-management"
             element={
