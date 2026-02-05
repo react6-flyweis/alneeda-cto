@@ -18,6 +18,7 @@ import DeploymentPipelinePage from "./pages/dev-ops/DeploymentPipelinePage";
 import DataEngineeringPage from "./pages/data-engineering/DataEngineeringPage";
 
 import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
+import AccessReviewPage from "./pages/security-privacy/AccessReviewPage";
 
 function App() {
   return (
@@ -68,6 +69,9 @@ function App() {
           />
           <Route path="/security-privacy" element={<SecurityPrivacyPage />} />
           <Route
+            path="/security-privacy/access-review"
+            element={<AccessReviewPage />}
+          />
           <Route path="/data-engineering" element={<DataEngineeringPage />} />
           <Route
             path="/release-management"
