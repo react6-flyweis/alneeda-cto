@@ -11,6 +11,7 @@ import CapacityAndScalingKPIsPage from "./pages/platform_architecture/CapacityAn
 import PlatformArchitecturePage from "./pages/PlatformArchitecturePage";
 import RiskRegisterPage from "./pages/platform_architecture/RiskRegisterPage";
 import ProductEngineeringPage from "./pages/product_engineering/ProductEngineeringPage";
+import ProductRegistryPage from "./pages/ProductRegistryPage";
 import ApiIntegrationsPage from "./pages/ApiIntegrationsPage";
 import IntegrationHealthPage from "./pages/IntegrationHealthPage";
 import DevOpsInfrastructurePage from "./pages/DevOpsInfrastructurePage";
@@ -18,6 +19,9 @@ import DeploymentPipelinePage from "./pages/dev-ops/DeploymentPipelinePage";
 import DataEngineeringPage from "./pages/data-engineering/DataEngineeringPage";
 import AIEngineeringPage from "./pages/ai-ml/AIEngineeringPage";
 import EngineeringQA from "./pages/EngineeringQAPage";
+import ReleaseChangeManagementPage from "./pages/ReleaseChangeManagementPage";
+import TechnicalIncidentResponsePage from "./pages/TechnicalIncidentResponsePage";
+import IncidentDetailsPage from "./pages/IncidentDetailsPage";
 
 import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
 import AccessReviewPage from "./pages/security-privacy/AccessReviewPage";
@@ -56,6 +60,10 @@ function App() {
             path="/product-engineering"
             element={<ProductEngineeringPage />}
           />
+          <Route
+            path="/product-registration"
+            element={<ProductRegistryPage />}
+          />
           <Route path="/api-integrations" element={<ApiIntegrationsPage />} />
           <Route
             path="/integration-health"
@@ -79,12 +87,15 @@ function App() {
           <Route path="/engineering-qa" element={<EngineeringQA />} />
           <Route
             path="/release-management"
-            element={
-              <div className="p-8">
-                <h1>Release & Management</h1>
-                <p>Placeholder Page</p>
-              </div>
-            }
+            element={<ReleaseChangeManagementPage />}
+          />
+          <Route
+            path="/technical-incident-response"
+            element={<TechnicalIncidentResponsePage />}
+          />
+          <Route
+            path="/technical-incident-response/:id"
+            element={<IncidentDetailsPage />}
           />
         </Route>
 
