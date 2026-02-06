@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import Header from './Header';
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import Header from "./Header";
+import AppSidebar from "./AppSidebar";
+import { SidebarInset, SidebarProvider } from "./ui/sidebar";
 
 const DashboardLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-(var(--bg-light-blue)) max-w-[2512px]">
+    <SidebarProvider className="">
       {/* Sidebar Overlay */}
       {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden" 
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           onClick={() => setIsSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <AppSidebar />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col lg:pl-64 min-w-0">
-        <Header onMenuClick={() => setIsSidebarOpen(true)} />
-        
-        <main className="flex-1 p-4 md:p-8 md:pr-4">
+      <SidebarInset className="flex-1 flex flex-col min-w-0 bg-[--dark-blue]">
+        <Header />
+
+        <div className="flex-1 p-4 md:p-6 md:pr-4">
           <Outlet />
-        </main>
-      </div>
-    </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
 
