@@ -26,6 +26,8 @@ import IncidentDetailsPage from "./pages/IncidentDetailsPage";
 import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
 import AccessReviewPage from "./pages/security-privacy/AccessReviewPage";
 
+import NotFoundPage from "./pages/NotFound";
+
 function App() {
   return (
     <BrowserRouter>
@@ -97,9 +99,11 @@ function App() {
             path="/technical-incident-response/:id"
             element={<IncidentDetailsPage />}
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
 
         <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
