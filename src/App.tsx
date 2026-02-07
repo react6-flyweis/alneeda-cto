@@ -21,6 +21,13 @@ import DataEngineeringPage from "./pages/data-engineering/DataEngineeringPage";
 import AIEngineeringPage from "./pages/ai-ml/AIEngineeringPage";
 import EngineeringQA from "./pages/EngineeringQAPage";
 import ReleaseChangeManagementPage from "./pages/ReleaseChangeManagementPage";
+import ProductVersioningPage from "./pages/ProductVersioningPage";
+import ProductCapabilityPage from "./pages/ProductCapabilityPage";
+import ChangeImpactRiskPage from "./pages/ChangeImpactRiskPage";
+import ChangeDetailPage from "./pages/ChangeDetailPage";
+import ChangeRiskPage from "./pages/ChangeRiskPage";
+import CreateVersionPage from "./pages/CreateVersionPage";
+import VersionDetailsPage from "./pages/VersionDetailsPage";
 import TechnicalIncidentResponsePage from "./pages/TechnicalIncidentResponsePage";
 import IncidentDetailsPage from "./pages/IncidentDetailsPage";
 
@@ -95,6 +102,34 @@ function App() {
           <Route
             path="/release-management"
             element={<ReleaseChangeManagementPage />}
+          />
+          <Route
+            path="/product-versioning"
+            element={<ProductVersioningPage />}
+          />
+          <Route
+            path="/product-capability-dependency"
+            element={<ProductCapabilityPage />}
+          />
+          <Route
+            path="/change-impact-risk"
+            element={<ChangeImpactRiskPage />}
+          />
+          <Route
+            path="/change-impact-risk/:id/risk"
+            element={<ChangeRiskPage />}
+          />
+          <Route
+            path="/change-impact-risk/:id"
+            element={<ChangeDetailPage />}
+          />
+          <Route
+            path="/product-versioning/create"
+            element={<CreateVersionPage />}
+          />
+          <Route
+            path="/product-versioning/:version"
+            element={<VersionDetailsPage />}
           />
           <Route
             path="/technical-incident-response"
