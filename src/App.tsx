@@ -12,6 +12,7 @@ import PlatformArchitecturePage from "./pages/PlatformArchitecturePage";
 import RiskRegisterPage from "./pages/platform_architecture/RiskRegisterPage";
 import ProductEngineeringPage from "./pages/product_engineering/ProductEngineeringPage";
 import ProductRegistryPage from "./pages/ProductRegistryPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
 import ApiIntegrationsPage from "./pages/ApiIntegrationsPage";
 import IntegrationHealthPage from "./pages/IntegrationHealthPage";
 import DevOpsInfrastructurePage from "./pages/DevOpsInfrastructurePage";
@@ -65,6 +66,10 @@ function App() {
           <Route
             path="/product-registration"
             element={<ProductRegistryPage />}
+          />
+          <Route
+            path="/product-registration/:id"
+            element={<ProductDetailsPage />}
           />
           <Route path="/api-integrations" element={<ApiIntegrationsPage />} />
           <Route
