@@ -1,6 +1,6 @@
 import PageHeader from "../components/common_components/PageHeader";
 import DashboardCardHeader from "./dashboard/components/DashboardCardHeader";
-import StatCard from "./dashboard/components/StatCard";
+import StatCard from "@/components/StatCard";
 import DeploymentPipelineTable from "@/components/dev-ops/DeploymentPipelineTable";
 import BudgetUtilisationCard from "./components/BudgetUtilisationCard";
 import AutoscalingCard from "./components/AutoscalingCard";

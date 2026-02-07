@@ -1,5 +1,5 @@
 import React from "react";
-import StatCard from "./components/StatCard";
+import StatCard from "@/components/StatCard";
 import GreenLaptopIcon from "../../assets/icons/greenLaptopIcon.svg";
 import latencyIcon from "../../assets/icons/blueLatencyIcon.svg";
 import purpleAlertIcon from "../../assets/icons/purpleAlertIcon.svg";
