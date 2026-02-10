@@ -8,6 +8,7 @@ import {
   SidebarFooter,
 } from "./ui/sidebar";
 import { NavLink, useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import {
   LayoutDashboardIcon,
   NetworkIcon,
@@ -39,6 +40,16 @@ import LogoutDialog from "./LogoutDialog";
 
 export default function AppSidebar() {
   const location = useLocation();
+  const activeItemRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    if (activeItemRef.current) {
+      activeItemRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [location.pathname]);
 
   const menuItems = [
     {
@@ -144,7 +155,7 @@ export default function AppSidebar() {
     {
       icon: ShieldCheckIcon,
       label: "Compliance & Legal Readiness",
-      path: "/compliance-legal",
+      path: "/compliance",
     },
     {
       icon: CheckSquareIcon,
@@ -190,23 +201,29 @@ export default function AppSidebar() {
 
       <SidebarContent className="pl-4 pt-4 border-0 shadow-none">
         <SidebarMenu className="space-y-1">
-          {menuItems.map((m) => (
-            <SidebarMenuItem key={m.label}>
-              <SidebarMenuButton
-                asChild
-                isActive={location.pathname === m.path}
-                className="relative overflow-visible h-10 pl-4 rounded-l-full data-[active=true]:font-semibold data-[active=true]:before:absolute data-[active=true]:before:right-0 data-[active=true]:before:-top-[20px] data-[active=true]:before:h-[20px] data-[active=true]:before:w-[20px] data-[active=true]:before:bg-[radial-gradient(circle_at_0_0,transparent_20px,var(--sidebar-accent)_20.5px)] data-[active=true]:before:content-[''] data-[active=true]:after:absolute data-[active=true]:after:right-0 data-[active=true]:after:-bottom-[20px] data-[active=true]:after:h-[20px] data-[active=true]:after:w-[20px] data-[active=true]:after:bg-[radial-gradient(circle_at_0_20px,transparent_20px,var(--sidebar-accent)_20.5px)] data-[active=true]:after:content-['']"
+          {menuItems.map((m) => {
+            const isActive = location.pathname.includes(m.path);
+            return (
+              <SidebarMenuItem
+                key={m.label}
+                ref={isActive ? activeItemRef : null}
               >
-                <NavLink
-                  to={m.path}
-                  className="flex items-center gap-2 w-full font-poppins"
+                <SidebarMenuButton
+                  asChild
+                  isActive={isActive}
+                  className="relative overflow-visible h-10 pl-4 rounded-l-full data-[active=true]:font-semibold data-[active=true]:before:absolute data-[active=true]:before:right-0 data-[active=true]:before:-top-[20px] data-[active=true]:before:h-[20px] data-[active=true]:before:w-[20px] data-[active=true]:before:bg-[radial-gradient(circle_at_0_0,transparent_20px,var(--sidebar-accent)_20.5px)] data-[active=true]:before:content-[''] data-[active=true]:after:absolute data-[active=true]:after:right-0 data-[active=true]:after:-bottom-[20px] data-[active=true]:after:h-[20px] data-[active=true]:after:w-[20px] data-[active=true]:after:bg-[radial-gradient(circle_at_0_20px,transparent_20px,var(--sidebar-accent)_20.5px)] data-[active=true]:after:content-['']"
                 >
-                  <m.icon />
-                  <span className="truncate">{m.label}</span>
-                </NavLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+                  <NavLink
+                    to={m.path}
+                    className="flex items-center gap-2 w-full font-poppins"
+                  >
+                    <m.icon />
+                    <span className="truncate">{m.label}</span>
+                  </NavLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            );
+          })}
         </SidebarMenu>
       </SidebarContent>
 
