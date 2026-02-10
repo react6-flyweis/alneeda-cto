@@ -23,12 +23,19 @@ import ExperimentPerformancePage from "./pages/experimentation/ExperimentPerform
 import DecisionPage from "./pages/experimentation/DecisionPage";
 import DevOpsInfrastructurePage from "./pages/DevOpsInfrastructurePage";
 import DeploymentPipelinePage from "./pages/dev-ops/DeploymentPipelinePage";
+import CompliancePage from "./pages/CompliancePage";
+import RequestLaunchClearancePage from "./pages/RequestLaunchClearancePage";
+import ComplianceDetailPage from "./pages/ComplianceDetailPage";
 import DataEngineeringPage from "./pages/data-engineering/DataEngineeringPage";
 import AIEngineeringPage from "./pages/ai-ml/AIEngineeringPage";
 import EngineeringQA from "./pages/EngineeringQAPage";
 import ReleaseChangeManagementPage from "./pages/ReleaseChangeManagementPage";
 import ProductVersioningPage from "./pages/ProductVersioningPage";
 import ProductCapabilityPage from "./pages/ProductCapabilityPage";
+import MonetizationPage from "./pages/product-capability/MonetizationPage";
+import MonetizationEditorPage from "./pages/product-capability/MonetizationEditorPage";
+import ProductDataAnalyticsPage from "./pages/product-data-analytics/ProductDataAnalyticsPage";
+import AddEditKpiPage from "./pages/product-data-analytics/AddEditKpiPage";
 import ChangeImpactRiskPage from "./pages/ChangeImpactRiskPage";
 import ChangeDetailPage from "./pages/ChangeDetailPage";
 import ChangeRiskPage from "./pages/ChangeRiskPage";
@@ -38,11 +45,12 @@ import TechnicalIncidentResponsePage from "./pages/TechnicalIncidentResponsePage
 import IncidentDetailsPage from "./pages/IncidentDetailsPage";
 
 import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
-import ProductSecurityPrivacyPage from "./pages/ProductSecurityPrivacyPage";
+import ProductSecurityPrivacyPage from "@/pages/product-security-privacy/ProductSecurityPrivacyPage";
 import AccessReviewPage from "./pages/security-privacy/AccessReviewPage";
-import SensitiveFeatureApprovalsPage from "./pages/security-privacy/SensitiveFeatureApprovalsPage";
-import PIIExposureRulesPage from "./pages/security-privacy/PIIExposureRulesPage";
-import SecurityRiskReviewHistoryPage from "./pages/security-privacy/SecurityRiskReviewHistoryPage";
+import SensitiveFeatureApprovalsPage from "./pages/product-security-privacy/SensitiveFeatureApprovalsPage";
+import PIIExposureRulesPage from "./pages/product-security-privacy/PIIExposureRulesPage";
+import SecurityRiskReviewHistoryPage from "./pages/product-security-privacy/SecurityRiskReviewHistoryPage";
+import PIIFieldEditPage from "./pages/product-security-privacy/PIIFieldEditPage";
 
 import NotFoundPage from "./pages/NotFound";
 
@@ -118,29 +126,36 @@ function App() {
             path="/devops-infrastructure"
             element={<DevOpsInfrastructurePage />}
           />
+          <Route path="/compliance" element={<CompliancePage />} />
+          <Route path="/compliance/request-launch-clearance" element={<RequestLaunchClearancePage />} />
+          <Route path="/compliance/:slug" element={<ComplianceDetailPage />} />
           <Route
             path="/devops/pipelines"
             element={<DeploymentPipelinePage />}
           />
           <Route path="/security-privacy" element={<SecurityPrivacyPage />} />
           <Route
-            path="/product-security-governance"
-            element={<ProductSecurityPrivacyPage />}
-          />
-          <Route
             path="/security-privacy/access-review"
             element={<AccessReviewPage />}
           />
           <Route
-            path="/security-privacy/approvals"
+            path="/product-security-governance"
+            element={<ProductSecurityPrivacyPage />}
+          />
+          <Route
+            path="/product-security-governance/approvals"
             element={<SensitiveFeatureApprovalsPage />}
           />
           <Route
-            path="/security-privacy/pii-rules"
+            path="/product-security-governance/pii-rules"
             element={<PIIExposureRulesPage />}
           />
           <Route
-            path="/security-privacy/risk-history"
+            path="/product-security-governance/pii-rules/:field/edit"
+            element={<PIIFieldEditPage />}
+          />
+          <Route
+            path="/product-security-governance/risk-history"
             element={<SecurityRiskReviewHistoryPage />}
           />
           <Route path="/data-engineering" element={<DataEngineeringPage />} />
@@ -157,6 +172,27 @@ function App() {
           <Route
             path="/product-capability-dependency"
             element={<ProductCapabilityPage />}
+          />
+          <Route path="/monetization-revenue" element={<MonetizationPage />} />
+          <Route
+            path="/monetization-revenue/create"
+            element={<MonetizationEditorPage />}
+          />
+          <Route
+            path="/monetization-revenue/:id/edit"
+            element={<MonetizationEditorPage />}
+          />
+          <Route
+            path="/product-data-analytics"
+            element={<ProductDataAnalyticsPage />}
+          />
+          <Route
+            path="/product-data-analytics/kpi/create"
+            element={<AddEditKpiPage />}
+          />
+          <Route
+            path="/product-data-analytics/kpi/:id/edit"
+            element={<AddEditKpiPage />}
           />
           <Route
             path="/change-impact-risk"
