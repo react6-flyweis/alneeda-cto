@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Edit2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,62 +17,8 @@ import {
   TableHead,
   TableCell,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 
-type PiiRow = {
-  field: string;
-  type: string;
-  retention: number;
-  reviewed: string;
-  purposes: string;
-  protection: string;
-  risk: "High" | "Medium" | "Low";
-};
-
-const rows: PiiRow[] = [
-  {
-    field: "email",
-    type: "String",
-    retention: 365,
-    reviewed: "01-20-2026",
-    purposes: "Marketing, Analytics, Personalisation",
-    protection: "Encrypted, Anonymised",
-    risk: "High",
-  },
-  {
-    field: "full_name",
-    type: "String",
-    retention: 365,
-    reviewed: "01-21-2026",
-    purposes: "Compliance, Support, Billing",
-    protection: "Encrypted, Anonymised",
-    risk: "High",
-  },
-  {
-    field: "ip_address",
-    type: "String",
-    retention: 730,
-    reviewed: "01-22-2026",
-    purposes: "Marketing, Personalisation",
-    protection: "Anonymised",
-    risk: "Low",
-  },
-  {
-    field: "billing_address",
-    type: "String",
-    retention: 90,
-    reviewed: "01-20-2026",
-    purposes: "Compliance",
-    protection: "Encrypted",
-    risk: "Medium",
-  },
-];
-
-const riskColorMap: Record<PiiRow["risk"], string> = {
-  High: "bg-red-100 text-red-700",
-  Medium: "bg-yellow-100 text-yellow-700",
-  Low: "bg-green-100 text-green-700",
-};
+import { rows, riskColorMap } from "@/pages/product-security-privacy/piiFields";
 
 export default function PIIExposureRulesCard() {
   return (
@@ -82,7 +29,7 @@ export default function PIIExposureRulesCard() {
           <CardDescription>Recent Rules</CardDescription>
         </div>
         <CardAction>
-          <Link to="/security-privacy/pii-rules">
+          <Link to="/product-security-governance/pii-rules">
             <Button>View All</Button>
           </Link>
         </CardAction>
@@ -98,26 +45,38 @@ export default function PIIExposureRulesCard() {
               <TableHead>Allowed Purposes</TableHead>
               <TableHead>Protection Settings</TableHead>
               <TableHead>Risk</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
 
           <TableBody>
-            {rows.map((r) => (
+            {rows.slice(0, 4).map((r) => (
               <TableRow key={r.field}>
                 <TableCell className="max-w-[20%]">
                   <div className="font-medium">{r.field}</div>
-                  <div className="text-xs text-gray-500 mt-1">{r.type}</div>
+                  <div className="text-xs text-gray-500 mt-1">String</div>
                 </TableCell>
-                <TableCell>{r.retention}</TableCell>
-                <TableCell>{r.reviewed}</TableCell>
+                <TableCell>{r.retentionDays}</TableCell>
+                <TableCell>{r.lastReviewed}</TableCell>
                 <TableCell className="max-w-[30%] text-ellipsis overflow-hidden">
                   {r.purposes}
                 </TableCell>
                 <TableCell>{r.protection}</TableCell>
                 <TableCell>
-                  <Badge className={`rounded ${riskColorMap[r.risk]}`}>
+                  <span
+                    className={`inline-flex items-center px-3 py-1 text-xs rounded-md font-medium ${riskColorMap[r.risk]}`}
+                  >
                     {r.risk}
-                  </Badge>
+                  </span>
+                </TableCell>
+                <TableCell className="text-right">
+                  <Link
+                    to={`/product-security-governance/pii-rules/${r.field}/edit`}
+                    className="p-2 rounded-md hover:bg-gray-50 inline-flex items-center"
+                    aria-label={`Edit ${r.field}`}
+                  >
+                    <Edit2 className="size-4" />
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}
