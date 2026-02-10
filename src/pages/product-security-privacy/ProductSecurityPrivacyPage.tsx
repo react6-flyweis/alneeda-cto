@@ -1,8 +1,8 @@
 import PageHeader from "@/components/common_components/PageHeader";
 import StatCard from "@/components/StatCard";
-import SensitiveFeatureApprovalsCard from "@/pages/components/SensitiveFeatureApprovalsCard";
-import PIIExposureRulesCard from "@/pages/components/PIIExposureRulesCard";
-import SecurityRiskReviewHistoryCard from "@/pages/components/SecurityRiskReviewHistoryCard";
+import SensitiveFeatureApprovalsCard from "@/components/product-security-privacy/SensitiveFeatureApprovalsCard";
+import PIIExposureRulesCard from "@/components/product-security-privacy/PIIExposureRulesCard";
+import SecurityRiskReviewHistoryCard from "@/components/product-security-privacy/SecurityRiskReviewHistoryCard";
 import { Shield, Database, Clock, AlertTriangle } from "lucide-react";
 
 export default function ProductSecurityPrivacyPage() {

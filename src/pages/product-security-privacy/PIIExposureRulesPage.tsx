@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, Search } from "lucide-react";
+import { ChevronLeft, Search, Edit2 } from "lucide-react";
 import {
   InputGroup,
   InputGroupAddon,
@@ -16,79 +16,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 
-type PIIFieldRow = {
-  field: string;
-  retentionDays: number;
-  lastReviewed: string;
-  purposes: string;
-  protection: string;
-  risk: "High" | "Medium" | "Low";
-};
-
-const rows: PIIFieldRow[] = [
-  {
-    field: "email",
-    retentionDays: 365,
-    lastReviewed: "01-20-2026",
-    purposes: "Marketing, Analytics, Personalisation",
-    protection: "Encrypted, Anonymised",
-    risk: "High",
-  },
-  {
-    field: "full_name",
-    retentionDays: 365,
-    lastReviewed: "01-21-2026",
-    purposes: "Compliance, Support, Billing",
-    protection: "Encrypted, Anonymised",
-    risk: "High",
-  },
-  {
-    field: "ip_address",
-    retentionDays: 730,
-    lastReviewed: "01-22-2026",
-    purposes: "Marketing, Personalisation",
-    protection: "Anonymised",
-    risk: "Low",
-  },
-  {
-    field: "billing_address",
-    retentionDays: 90,
-    lastReviewed: "01-20-2026",
-    purposes: "Compliance",
-    protection: "Encrypted",
-    risk: "Medium",
-  },
-  {
-    field: "device_id",
-    retentionDays: 2555,
-    lastReviewed: "01-19-2026",
-    purposes: "Support",
-    protection: "Encrypted",
-    risk: "Medium",
-  },
-  {
-    field: "date_of_birth",
-    retentionDays: 365,
-    lastReviewed: "01-17-2026",
-    purposes: "Personalisation",
-    protection: "Anonymised",
-    risk: "High",
-  },
-  {
-    field: "ssn_last_four",
-    retentionDays: 2555,
-    lastReviewed: "01-16-2026",
-    purposes: "Analytics",
-    protection: "Anonymised",
-    risk: "High",
-  },
-];
-
-const riskColorMap: Record<PIIFieldRow["risk"], string> = {
-  High: "bg-rose-100 text-rose-700",
-  Medium: "bg-amber-100 text-amber-700",
-  Low: "bg-emerald-100 text-emerald-700",
-};
+import { rows, riskColorMap } from "./piiFields";
 
 export default function PIIExposureRulesPage() {
   const [query, setQuery] = useState("");
@@ -106,9 +34,9 @@ export default function PIIExposureRulesPage() {
 
   return (
     <div className="w-full">
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex  gap-2 mb-6">
         <Link
-          to="/security-privacy"
+          to="/product-security-governance"
           className="inline-flex items-center text-gray-600"
         >
           <ChevronLeft className="size-6" />
@@ -124,7 +52,7 @@ export default function PIIExposureRulesPage() {
       </div>
 
       <div className="mb-3 max-w-xs">
-        <InputGroup>
+        <InputGroup className="bg-white">
           <InputGroupAddon align="inline-start">
             <Search className="size-4" />
           </InputGroupAddon>
@@ -150,6 +78,7 @@ export default function PIIExposureRulesPage() {
                   <TableHead>Allowed Purposes</TableHead>
                   <TableHead>Protection Settings</TableHead>
                   <TableHead>Risk</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -167,10 +96,19 @@ export default function PIIExposureRulesPage() {
                     <TableCell>{r.protection}</TableCell>
                     <TableCell>
                       <span
-                        className={`inline-flex items-center px-2 py-1 text-xs rounded ${riskColorMap[r.risk]}`}
+                        className={`inline-flex items-center px-3 py-1 text-xs rounded-md font-medium ${riskColorMap[r.risk]}`}
                       >
                         {r.risk}
                       </span>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Link
+                        to={`/product-security-governance/pii-rules/${r.field}/edit`}
+                        className="p-2 rounded-md hover:bg-gray-50 inline-flex items-center"
+                        aria-label={`Edit ${r.field}`}
+                      >
+                        <Edit2 className="size-4" />
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))}

@@ -84,9 +84,9 @@ export default function SecurityRiskReviewHistoryPage() {
 
   return (
     <div className="w-full">
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex gap-2 mb-6">
         <Link
-          to="/security-privacy"
+          to="/product-security-governance"
           className="inline-flex items-center text-gray-600"
         >
           <ChevronLeft className="size-6" />
@@ -102,7 +102,7 @@ export default function SecurityRiskReviewHistoryPage() {
       </div>
 
       <div className="mb-3 max-w-xs">
-        <InputGroup>
+        <InputGroup className="bg-white">
           <InputGroupAddon align="inline-start">
             <Search className="size-4" />
           </InputGroupAddon>
