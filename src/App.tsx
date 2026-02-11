@@ -43,7 +43,9 @@ import CreateVersionPage from "./pages/CreateVersionPage";
 import VersionDetailsPage from "./pages/VersionDetailsPage";
 import TechnicalIncidentResponsePage from "./pages/TechnicalIncidentResponsePage";
 import IncidentDetailsPage from "./pages/IncidentDetailsPage";
-
+import ProductOperationalReadinessPage from "./pages/ProductOperationalReadinessPage";
+import ProductOperationalVerificationPage from "./pages/ProductOperationalVerificationPage";
+import ProductOperationalSignoffPage from "./pages/ProductOperationalSignoffPage";
 import SecurityPrivacyPage from "./pages/SecurityPrivacyPage";
 import ProductSecurityPrivacyPage from "@/pages/product-security-privacy/ProductSecurityPrivacyPage";
 import AccessReviewPage from "./pages/security-privacy/AccessReviewPage";
@@ -127,8 +129,23 @@ function App() {
             element={<DevOpsInfrastructurePage />}
           />
           <Route path="/compliance" element={<CompliancePage />} />
-          <Route path="/compliance/request-launch-clearance" element={<RequestLaunchClearancePage />} />
+          <Route
+            path="/compliance/request-launch-clearance"
+            element={<RequestLaunchClearancePage />}
+          />
           <Route path="/compliance/:slug" element={<ComplianceDetailPage />} />
+          <Route
+            path="/product-operational-readiness"
+            element={<ProductOperationalReadinessPage />}
+          />
+          <Route
+            path="/product-operational-readiness/verification"
+            element={<ProductOperationalVerificationPage />}
+          />
+          <Route
+            path="/product-operational-readiness/signoff"
+            element={<ProductOperationalSignoffPage />}
+          />
           <Route
             path="/devops/pipelines"
             element={<DeploymentPipelinePage />}
