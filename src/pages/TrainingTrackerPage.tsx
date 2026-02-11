@@ -20,6 +20,7 @@ type Material = {
   owner: string;
   due: string;
   status: string;
+  notes?: string;
 };
 
 const materials: Material[] = [
@@ -193,7 +194,7 @@ function TrainingTrackerPage() {
                               ? new Date(m.due).toISOString().slice(0, 10)
                               : "",
                             status: m.status,
-                            notes: (m as any).notes,
+                            notes: m.notes,
                           });
                           setIsDialogOpen(true);
                         }}
