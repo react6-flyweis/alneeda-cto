@@ -169,8 +169,8 @@ export default function AppSidebar() {
     },
     {
       icon: Globe,
-      label: "Product-Level Global",
-      path: "/product-global",
+      label: "Product-Level Global Governance",
+      path: "/product-level-governance",
     },
     {
       icon: Settings,
