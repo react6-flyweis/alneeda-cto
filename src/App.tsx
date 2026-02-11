@@ -56,6 +56,7 @@ import PIIFieldEditPage from "./pages/product-security-privacy/PIIFieldEditPage"
 import DocumentationPage from "./pages/DocumentationPage";
 import TrainingTrackerPage from "./pages/TrainingTrackerPage";
 import DocumentationDetailPage from "./pages/DocumentationDetailPage";
+import ProductLevelGovernancePage from "./pages/ProductLevelGovernancePage";
 
 import NotFoundPage from "./pages/NotFound";
 
@@ -177,6 +178,10 @@ function App() {
           <Route
             path="/product-security-governance/risk-history"
             element={<SecurityRiskReviewHistoryPage />}
+          />
+          <Route
+            path="/product-level-governance"
+            element={<ProductLevelGovernancePage />}
           />
           <Route path="/data-engineering" element={<DataEngineeringPage />} />
           <Route path="/ai-ml" element={<AIEngineeringPage />} />
