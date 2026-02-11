@@ -53,6 +53,9 @@ import SensitiveFeatureApprovalsPage from "./pages/product-security-privacy/Sens
 import PIIExposureRulesPage from "./pages/product-security-privacy/PIIExposureRulesPage";
 import SecurityRiskReviewHistoryPage from "./pages/product-security-privacy/SecurityRiskReviewHistoryPage";
 import PIIFieldEditPage from "./pages/product-security-privacy/PIIFieldEditPage";
+import DocumentationPage from "./pages/DocumentationPage";
+import TrainingTrackerPage from "./pages/TrainingTrackerPage";
+import DocumentationDetailPage from "./pages/DocumentationDetailPage";
 
 import NotFoundPage from "./pages/NotFound";
 
@@ -238,6 +241,15 @@ function App() {
           <Route
             path="/technical-incident-response/:id"
             element={<IncidentDetailsPage />}
+          />
+          <Route path="/training-tracker" element={<TrainingTrackerPage />} />
+          <Route
+            path="/documentation-knowledge"
+            element={<DocumentationPage />}
+          />
+          <Route
+            path="/documentation-knowledge/:slug"
+            element={<DocumentationDetailPage />}
           />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
