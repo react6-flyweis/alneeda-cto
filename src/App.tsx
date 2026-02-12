@@ -58,6 +58,7 @@ import TrainingTrackerPage from "./pages/TrainingTrackerPage";
 import DocumentationDetailPage from "./pages/DocumentationDetailPage";
 import ProductLevelGovernancePage from "./pages/ProductLevelGovernancePage";
 import SettingsPage from "./pages/SettingsPage";
+import AppManagePage from "./pages/AppManagePage";
 
 import NotFoundPage from "./pages/NotFound";
 
@@ -185,6 +186,7 @@ function App() {
             element={<ProductLevelGovernancePage />}
           />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/app-manage" element={<AppManagePage />} />
           <Route path="/data-engineering" element={<DataEngineeringPage />} />
           <Route path="/ai-ml" element={<AIEngineeringPage />} />
           <Route path="/engineering-qa" element={<EngineeringQA />} />
