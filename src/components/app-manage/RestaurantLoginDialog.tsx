@@ -1,6 +1,11 @@
 import LoginScreenDialog from "@/components/app-manage/LoginScreenDialog";
 
-export const RESTAURANT_LOGIN_DEFAULT = {
+export const RESTAURANT_LOGIN_DEFAULT: {
+  fields: { id: string; label: string }[];
+  additionalOptions: { id: string; name: string; enabled: boolean }[];
+  otpRequired: boolean;
+  faceIdRequired: boolean;
+} = {
   fields: [{ id: "field-1", label: "Phone Number" }],
   additionalOptions: [
     { id: "google", name: "Google", enabled: true },
@@ -9,7 +14,7 @@ export const RESTAURANT_LOGIN_DEFAULT = {
   ],
   otpRequired: true,
   faceIdRequired: false,
-} as const;
+};
 
 interface RestaurantLoginDialogProps {
   open: boolean;

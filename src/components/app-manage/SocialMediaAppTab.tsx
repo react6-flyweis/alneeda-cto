@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Edit3 } from "lucide-react";
+
+type NavTab = { id: string; label: string; visible: boolean };
+type DocSection = { title: string; items: string[]; requiresPhotos?: boolean };
 import typographyIcon from "@/assets/app-manage/icons/typography.svg";
 import bottomNavIcon from "@/assets/app-manage/icons/bottom-nav.svg";
 import topNavIcon from "@/assets/app-manage/icons/top-nav.svg";
@@ -27,22 +29,22 @@ export default function SocialMediaAppTab() {
   };
 
   const [isBottomNavDialogOpen, setIsBottomNavDialogOpen] = useState(false);
-  const [, setBottomNavTabs] = useState([]);
-  const handleBottomNavApply = (tabs) => {
+  const [, setBottomNavTabs] = useState<NavTab[]>([]);
+  const handleBottomNavApply = (tabs: NavTab[]) => {
     setBottomNavTabs(tabs);
     setIsBottomNavDialogOpen(false);
   };
 
   const [isHomeTopNavOpen, setIsHomeTopNavOpen] = useState(false);
-  const [, setHomeTopTabs] = useState([]);
-  const handleHomeTopApply = (tabs) => {
+  const [, setHomeTopTabs] = useState<NavTab[]>([]);
+  const handleHomeTopApply = (tabs: NavTab[]) => {
     setHomeTopTabs(tabs);
     setIsHomeTopNavOpen(false);
   };
 
   const [isDocsDialogOpen, setIsDocsDialogOpen] = useState(false);
   const [documentsCount, setDocumentsCount] = useState(9);
-  const handleDocumentsApply = (sections) => {
+  const handleDocumentsApply = (sections: DocSection[]) => {
     const count = sections.reduce((acc, s) => acc + (s.items?.length || 0), 0);
     setDocumentsCount(count);
     setIsDocsDialogOpen(false);
