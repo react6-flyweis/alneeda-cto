@@ -52,6 +52,8 @@ interface OnboardingScreensDialogProps {
   setOpen: (open: boolean) => void;
   onApply: (screens: FormValues["screens"]) => void;
   onCancel: () => void;
+  /** optional initial screens to show in the dialog (overrides DEFAULT_SCREENS) */
+  initialScreens?: FormValues["screens"];
 }
 
 export default function OnboardingScreensDialog({
@@ -59,11 +61,12 @@ export default function OnboardingScreensDialog({
   setOpen,
   onApply,
   onCancel,
+  initialScreens,
 }: OnboardingScreensDialogProps) {
   const { register, control, handleSubmit, setValue, watch } =
     useForm<FormValues>({
       resolver: zodResolver(FormSchema),
-      defaultValues: { screens: DEFAULT_SCREENS },
+      defaultValues: { screens: initialScreens ?? DEFAULT_SCREENS },
     });
 
   const { fields, append } = useFieldArray({
