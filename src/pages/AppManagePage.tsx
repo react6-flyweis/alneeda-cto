@@ -1,6 +1,7 @@
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 import UserAppTab from "@/components/app-manage/UserAppTab";
+import SocialMediaAppTab from "@/components/app-manage/SocialMediaAppTab";
 
 const apps = [
   "User App",
@@ -39,8 +40,12 @@ export default function AppManagePage() {
           <UserAppTab />
         </TabsContent>
 
+        <TabsContent value="social" className="space-y-4">
+          <SocialMediaAppTab />
+        </TabsContent>
+
         {/* other tabs reuse same content for now */}
-        {apps.slice(1).map((a) => (
+        {apps.slice(2).map((a) => (
           <TabsContent
             key={a}
             value={a.toLowerCase().split(" ")[0]}
