@@ -3,6 +3,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import UserAppTab from "@/components/app-manage/UserAppTab";
 import SocialMediaAppTab from "@/components/app-manage/SocialMediaAppTab";
 import RestaurantAppTab from "@/components/app-manage/RestaurantAppTab";
+import GroceryAppTab from "@/components/app-manage/GroceryAppTab";
+import ShoppingAppTab from "@/components/app-manage/ShoppingAppTab";
 
 const apps = [
   "User App",
@@ -49,14 +51,22 @@ export default function AppManagePage() {
           <RestaurantAppTab />
         </TabsContent>
 
-        {/* other tabs reuse same content for now */}
-        {apps.slice(3).map((a) => (
+        <TabsContent value="grocery" className="space-y-4">
+          <GroceryAppTab />
+        </TabsContent>
+
+        <TabsContent value="shopping" className="space-y-4">
+          <ShoppingAppTab />
+        </TabsContent>
+
+        {/* remaining tabs reuse same content for now */}
+        {/* {apps.slice(5).map((a) => (
           <TabsContent
             key={a}
             value={a.toLowerCase().split(" ")[0]}
             className="space-y-4"
           ></TabsContent>
-        ))}
+        ))} */}
       </Tabs>
     </div>
   );
