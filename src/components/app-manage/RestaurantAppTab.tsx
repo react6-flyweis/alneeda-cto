@@ -14,7 +14,8 @@ import RestaurantLoginDialog, {
   RESTAURANT_LOGIN_DEFAULT,
 } from "@/components/app-manage/RestaurantLoginDialog";
 import RestaurantSignUpScreenDialog from "@/components/app-manage/RestaurantSignUpScreenDialog";
-
+import RestaurantBottomNavigationDialog from "@/components/app-manage/RestaurantBottomNavigationDialog";
+import RestaurantSideNavigationDialog from "@/components/app-manage/RestaurantSideNavigationDialog";
 type AuthField = { id: string; label: string };
 
 type AuthConfig = {
@@ -46,6 +47,26 @@ export default function RestaurantAppTab() {
 
   const handleOnboardingApply = () => {
     setIsOnboardingDialogOpen(false);
+  };
+
+  // Bottom Navigation dialog (restaurant)
+  const [isBottomNavDialogOpen, setIsBottomNavDialogOpen] = useState(false);
+  const [bottomNavCount, setBottomNavCount] = useState<number>(4);
+  const handleBottomNavApply = (
+    tabs: { id: string; label: string; visible: boolean }[],
+  ) => {
+    setBottomNavCount(tabs.length);
+    setIsBottomNavDialogOpen(false);
+  };
+
+  // Side Navigation dialog (restaurant)
+  const [isSideNavDialogOpen, setIsSideNavDialogOpen] = useState(false);
+  const [sideNavCount, setSideNavCount] = useState<number>(32);
+  const handleSideNavApply = (
+    tabs: { id: string; label: string; visible: boolean }[],
+  ) => {
+    setSideNavCount(tabs.length);
+    setIsSideNavDialogOpen(false);
   };
 
   // Login screen
@@ -99,7 +120,7 @@ export default function RestaurantAppTab() {
     },
     {
       title: "Bottom Navigation",
-      subtitle: "4 Options",
+      subtitle: `${bottomNavCount} Options`,
       icon: (
         <img src={bottomNavIcon} alt="bottom navigation" className="size-5" />
       ),
@@ -107,7 +128,7 @@ export default function RestaurantAppTab() {
     },
     {
       title: "Side Navigation",
-      subtitle: "32 Options",
+      subtitle: `${sideNavCount} Options`,
       icon: <img src={sidebarIcon} alt="side navigation" className="size-5" />,
       iconBg: "bg-gray-100",
     },
@@ -178,6 +199,13 @@ export default function RestaurantAppTab() {
                 >
                   <Edit3 className="size-3" /> <span>Edit</span>
                 </button>
+              ) : c.title === "Bottom Navigation" ? (
+                <button
+                  onClick={() => setIsBottomNavDialogOpen(true)}
+                  className="text-xs text-muted-foreground inline-flex items-center gap-1 hover:text-gray-900 transition-colors"
+                >
+                  <Edit3 className="size-3" /> <span>Edit</span>
+                </button>
               ) : c.title === "Onboarding Screen" ? (
                 <button
                   onClick={() => setIsOnboardingDialogOpen(true)}
@@ -195,6 +223,13 @@ export default function RestaurantAppTab() {
               ) : c.title === "Sign Up Screen" ? (
                 <button
                   onClick={() => setIsSignUpDialogOpen(true)}
+                  className="text-xs text-muted-foreground inline-flex items-center gap-1 hover:text-gray-900 transition-colors"
+                >
+                  <Edit3 className="size-3" /> <span>Edit</span>
+                </button>
+              ) : c.title === "Side Navigation" ? (
+                <button
+                  onClick={() => setIsSideNavDialogOpen(true)}
                   className="text-xs text-muted-foreground inline-flex items-center gap-1 hover:text-gray-900 transition-colors"
                 >
                   <Edit3 className="size-3" /> <span>Edit</span>
@@ -248,6 +283,20 @@ export default function RestaurantAppTab() {
         initial={signUpConfig}
         onApply={handleSignUpApply}
         onCancel={() => setIsSignUpDialogOpen(false)}
+      />
+
+      <RestaurantBottomNavigationDialog
+        open={isBottomNavDialogOpen}
+        setOpen={setIsBottomNavDialogOpen}
+        onApply={handleBottomNavApply}
+        onCancel={() => setIsBottomNavDialogOpen(false)}
+      />
+
+      <RestaurantSideNavigationDialog
+        open={isSideNavDialogOpen}
+        setOpen={setIsSideNavDialogOpen}
+        onApply={handleSideNavApply}
+        onCancel={() => setIsSideNavDialogOpen(false)}
       />
     </>
   );
