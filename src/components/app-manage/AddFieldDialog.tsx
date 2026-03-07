@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "../ui/dialog";
+import { Plus, Trash2 } from "lucide-react";
 
 const FieldSchema = z.object({
   id: z.string(),
   label: z.string().min(1, "Label is required"),
+  dropdownItems: z.array(z.string().min(1, "Item cannot be empty")).optional(),
 });
 
 type FieldForm = z.infer<typeof FieldSchema>;
@@ -15,6 +17,7 @@ type FieldForm = z.infer<typeof FieldSchema>;
 const defaultField = (): FieldForm => ({
   id: `field-${Date.now()}`,
   label: "",
+  dropdownItems: [],
 });
 
 interface AddFieldDialogProps {
@@ -32,13 +35,25 @@ export default function AddFieldDialog({
   onCancel,
   initial,
 }: AddFieldDialogProps) {
-  const { register, handleSubmit, formState, reset } = useForm<FieldForm>({
-    mode: "onChange",
-    resolver: zodResolver(FieldSchema),
-    defaultValues: {
-      ...defaultField(),
-      ...(initial ?? {}),
-    },
+  const { register, handleSubmit, formState, reset, control, watch } =
+    useForm<FieldForm>({
+      mode: "onChange",
+      resolver: zodResolver(FieldSchema),
+      defaultValues: {
+        ...defaultField(),
+        ...(initial ?? {}),
+      },
+    });
+
+  const {
+    fields: dropdownFields,
+    append,
+    remove,
+  } = useFieldArray({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    control: control as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    name: "dropdownItems" as any,
   });
 
   const isEditing = Boolean(initial && initial.id);
@@ -60,6 +75,10 @@ export default function AddFieldDialog({
     reset();
   };
 
+  const showDropdown =
+    (watch("label") ?? "").toLowerCase().includes("status") ||
+    dropdownFields.length > 0;
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-md p-0 gap-0">
@@ -79,6 +98,47 @@ export default function AddFieldDialog({
                 className="w-full h-11 px-3 border rounded-md text-sm bg-white"
               />
             </div>
+
+            {showDropdown && (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="block text-sm font-semibold">
+                    Dropdown
+                  </label>
+                  <Button
+                    variant="ghost"
+                    onClick={() => append("")}
+                    aria-label="Add option"
+                  >
+                    <Plus />
+                  </Button>
+                </div>
+
+                <div className="space-y-3">
+                  {dropdownFields.map((item, idx) => (
+                    <div key={item.id} className="flex items-start gap-3">
+                      <div className="w-6 text-sm pt-3 text-muted-foreground">
+                        {idx + 1}
+                      </div>
+
+                      <input
+                        {...register(`dropdownItems.${idx}` as const)}
+                        placeholder={`Option ${idx + 1}`}
+                        className="flex-1 h-11 px-3 border rounded-md text-sm bg-white"
+                      />
+
+                      <Button
+                        variant="ghost"
+                        onClick={() => remove(idx)}
+                        aria-label="Remove option"
+                      >
+                        <Trash2 className="text-red-500" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="p-4 pt-0">
